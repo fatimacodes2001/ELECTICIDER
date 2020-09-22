@@ -8,6 +8,7 @@ There are two parts of this application. One runs at the receipt counter. The co
 This is where the user enters the credentials such as name, email, student ID etc. Upon verification of the credentials, a unique 6 digit voter ID
 is generated which is sent to the student through an email.
 
+
 The second part of the application runs at the voting booth where the user logs in by entering the email, student ID and the voter ID
 recieved through an email. The user is asked to caste the vote and submit the feedback in the end.The code for this part is present in
 the folder named Booth.
