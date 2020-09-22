@@ -1,0 +1,814 @@
+from tkinter import *
+import tkinter.messagebox
+import os
+#import openpyxl
+import subprocess
+from email.mime import *
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+import time
+from PIL import *
+from PIL import  Image,ImageTk
+global event
+reclist=[]
+
+import smtplib
+import imaplib
+import base64
+import email
+import io
+import os
+b=0;k=0
+global root
+def clickb(event):
+    butt1.config(image=sebc)
+    name1.config(bg="#273470",fg="white")
+    return
+def releaseb(event):
+    butt1.config(image=sebh)
+    name1.config(bg="#273470",fg="white")
+    return
+def hoveronb4(event):
+    butt1.config(image=sebh)
+    name1.config(bg="#273470",fg="white")
+    return
+def hoveroffb4(event):
+    butt1.config(image=seb)
+    name1.config(fg="#273470",bg="white")
+    return
+
+def clicka(event):
+    butt2.config(image=seac)
+    name2.config(bg="#273470", fg="white")
+    return
+def releasea(event):
+    butt2.config(image=seah)
+    name2.config(bg="#273470", fg="white")
+    return
+def hoverona4(event):
+    butt2.config(image=seah)
+    name2.config(bg="#273470", fg="white")
+    return
+def hoveroffa4(event):
+    butt2.config(image=sea)
+    name2.config(fg="#273470", bg="white")
+    return
+
+def clickd(event):
+    butt3.config(image=dispc)
+    return
+def released(event):
+    butt3.config(image=disph)
+    return
+def hoverond4(event):
+    butt3.config(image=disph)
+    return
+def hoveroffd4(event):
+    butt3.config(image=disp)
+    return
+
+def clickc1(event):
+    buttc1.config(image=compc)
+    return
+def releasec1(event):
+    buttc1.config(image=comph)
+    return
+def hoveronc1(event):
+    buttc1.config(image=comph)
+    return
+def hoveroffc1(event):
+    buttc1.config(image=comp)
+    return
+
+def clickc2(event):
+    buttc2.config(image=compc)
+    return
+def releasec2(event):
+    buttc2.config(image=comph)
+    return
+def hoveronc2(event):
+    buttc2.config(image=comph)
+    return
+def hoveroffc2(event):
+    buttc2.config(image=comp)
+    return
+
+
+
+def line2():
+    global xspeeda
+    global yspeeda
+    xspeeda = 3
+    yspeeda = 0
+    while True:
+        try:
+            canvas.move(recta, xspeeda, yspeeda)
+        except Exception:
+            break
+        posa = canvas.coords(recta)
+        if posa[2] < 1500:
+            xspeeda = 0
+        master.update()
+        time.sleep(0.0001)
+
+
+def window1():
+    global imgc
+    global pe1
+    global postere
+    global picL1
+    pe1 = Toplevel()
+    pe1.geometry("550x710")
+    pe1.minsize(550, 710)
+    pe1.maxsize(550, 710)
+    imgc = Image.open("postere.png")
+    imgc = imgc.resize((550, 710), Image.ANTIALIAS)
+    postere = ImageTk.PhotoImage(imgc)
+    picL1 = Label(pe1, image=postere)
+    picL1.pack()
+
+
+def window2():
+    global imgc
+    global pe2
+    global postern
+    global picL2
+    pe2 = Toplevel()
+    pe2.geometry("550x710")
+    pe2.minsize(550, 710)
+    pe2.maxsize(550, 710)
+    imgc = Image.open("postern.png")
+    imgc = imgc.resize((550, 715), Image.ANTIALIAS)
+    postern = ImageTk.PhotoImage(imgc)
+    picL2 = Label(pe2, image=postern)
+    picL2.pack()
+
+
+
+
+
+
+def click1(event):
+    global entry1
+    for i in range(1):
+        entry1.config(textvariable=mail)
+
+def hoveron1(event):
+    while 1:
+        try:
+            lab1.config(image=mailc)
+            lab1.place(rely=0.13)
+            entry1.config(bg="#E6E7E8")
+            global xspeed1
+            global yspeed1
+            xspeed1 = 0.5
+            yspeed1 = 0
+
+            while True:
+                can1.move(rect1, xspeed1, yspeed1)
+                pos1 = can1.coords(rect1)
+                if pos1[2] > 10:
+                    xspeed1 = 0
+                root.update()
+                time.sleep(0.01)
+        except Exception as e:
+                break
+
+
+
+
+def hoveroff1(event):
+    while 1:
+        try:
+
+            lab1.config(image=maili)
+            lab1.place(rely=0)
+            entry1.config(bg="white")
+            global xspeed1
+            global yspeed1
+            xspeed1 = -0.5
+            yspeed1 = 0
+
+            while True:
+                can1.move(rect1, xspeed1, yspeed1)
+                pos1 = can1.coords(rect1)
+                if pos1[2] < -5:
+                    xspeed1 = 0
+                root.update()
+                time.sleep(0.01)
+        except Exception as e:
+                break
+
+
+def click2(event):
+    global entry2
+    for i in range(1):
+        entry2.config(textvariable=cms)
+
+def hoveron2(event):
+    while 1:
+        try:
+            lab2.config(image=cmsc)
+            entry2.config(bg="#E6E7E8")
+            global xspeed2
+            global yspeed2
+            xspeed2 = 0.5
+            yspeed2 = 0
+
+            while True:
+                can2.move(rect2, xspeed2, yspeed2)
+                pos2 = can2.coords(rect2)
+                if pos2[2] > 10:
+                    xspeed2 = 0
+                root.update()
+                time.sleep(0.01)
+        except Exception as e:
+                break
+
+
+def hoveroff2(event):
+    while 1:
+        try:
+
+            lab2.config(image=cmsi)
+            entry2.config(bg="white")
+            global xspeed2
+            global yspeed2
+            xspeed2 = -0.5
+            yspeed2 = 0
+
+            while True:
+                can2.move(rect2, xspeed2, yspeed2)
+                pos2 = can2.coords(rect2)
+                if pos2[2] < -5:
+                    xspeed2 = 0
+                root.update()
+                time.sleep(0.01)
+        except Exception as e:
+                break
+
+def click3(event):
+    global entry3
+    for i in range(1):
+        entry3.config(textvariable=rec)
+
+def hoveron3(event):
+    while 1:
+        try:
+            lab3.config(image=receiptc)
+            entry3.config(bg="#E6E7E8")
+            global xspeed3
+            global yspeed3
+            xspeed3 = 0.5
+            yspeed3 = 0
+
+            while True:
+                can3.move(rect3, xspeed3, yspeed3)
+                pos3 = can3.coords(rect3)
+                if pos3[2] > 10:
+                    xspeed3 = 0
+                root.update()
+                time.sleep(0.01)
+        except Exception as e:
+                break
+
+
+def hoveroff3(event):
+    while 1:
+        try:
+
+            lab3.config(image=receipti)
+            entry3.config(bg="white")
+            global xspeed3
+            global yspeed3
+            xspeed3 = -0.5
+            yspeed3 = 0
+
+            while True:
+                can3.move(rect3, xspeed3, yspeed3)
+                pos3 = can3.coords(rect3)
+                if pos3[2] < -5:
+                    xspeed3 = 0
+                root.update()
+                time.sleep(0.01)
+
+
+        except Exception as e:
+                break
+
+
+
+def release(event):
+    button1.config(image=enterh)
+    button1.place(relx=0.3, rely=0.27, relwidth=0.4, relheight=0.08)
+    return
+def hoveron4(event):
+    button1.config(image=enterh)
+    return
+def hoveroff4(event):
+    button1.config(image=enteri)
+    return
+
+
+def line():
+    while 1:
+        try:
+
+            global xspeeda
+            global yspeeda
+
+
+            xspeeda = -2
+            yspeeda = 0
+
+
+            while True:
+                canb.move(recta, xspeeda, yspeeda)
+                posa = canb.coords(recta)
+                if posa[2] < 1500:
+                    xspeeda = 0
+                root.update()
+                time.sleep(0.0001)
+        except Exception as e:
+            break
+
+def fun():
+
+    global mail;global cms;global rec
+    global recinfo
+    global msg
+    cms=entry2.get()
+    rec=entry3.get()
+    mail=entry1.get()
+    print(cms,rec,mail)
+    email_user = 'electicider123@gmail.com'
+    email_pass = 'Maymoona123'
+    mail1 = imaplib.IMAP4_SSL('imap.gmail.com', 993)
+    mail1.login(email_user, email_pass)
+    mail1.select('inbox')
+    mail1.list()
+    result, data = mail1.search(None, 'ALL')
+    ids = data[0]  # data is a list.
+    id_list = ids.split()  # ids is a space separated string
+    latest_email_id = id_list[-1]  # get the latest
+    import six
+    result, data = mail1.fetch(latest_email_id, "(RFC822)")  # fetch the email body (RFC822) for the given ID
+
+    raw_email = data[0][1]  # here's the body, which is raw text of the whole email
+    msg = email.message_from_bytes(raw_email)
+    mail1.logout()
+    transfer(rec,cms,mail)
+
+
+
+
+def transfer(rec,cms,mail):
+    global reclist
+    if (str(rec) in str(msg)) and len(str(rec))==6 and (str(cms) in str(msg)) and (str(mail) in str(msg)):
+        if rec not in reclist:
+            casting()
+        else:
+            tkinter.messagebox.showerror('Invalid Reciept No.', 'Reciept No has aready been used')
+
+    else:
+        tkinter.messagebox.showerror('User not found','Details not recognized\n Please re-enter')
+def func1():
+    global b
+    b = b + 1
+
+    tkinter.messagebox.showinfo('Thanks', 'Casted')
+    file=open('fileemma.txt','w')
+    data1='Nathan is leading with {} votes'.format(b)
+
+    file.write(data1)
+    file.close()
+    v='n'
+    master.destroy()
+    import feedbackreal
+    feedbackreal.mains3(v)
+
+
+    mains()
+
+def func2():
+    global k
+    k = k + 1
+
+    tkinter.messagebox.showinfo('Thanks', 'Casted')
+    fn = open('filenathan.txt', 'w')
+    data1 = 'Nathan is leading with {} votes'.format(k)
+    v='k'
+    fn.write(data1)
+    fn.close()
+    master.destroy()
+    import feedbackreal
+    feedbackreal.mains3(v)
+
+
+    mains()
+
+
+
+def current():
+    global b;global k
+    if b > k:
+        if b - k > 1:
+            tkinter.messagebox.showinfo('Current info', 'Emma is leading with {} votes'.format(b - k))
+        else:
+            tkinter.messagebox.showinfo('Current info', 'Emma is leading with {} vote'.format(b - k))
+
+    elif k > b:
+        if k - b > 1:
+            tkinter.messagebox.showinfo('Current info', 'Nathan is leading with {} votes'.format(k - b))
+        else:
+            tkinter.messagebox.showinfo('Current info', 'Nathan is leading with {} vote'.format(k - b))
+
+    elif k == b:
+        tkinter.messagebox.showinfo('Current info', 'Votes are even')
+    else:
+        tkinter.messagebox.showinfo('Current info', "No votes have been casted yet")
+
+
+
+
+
+
+
+
+
+
+
+
+
+def casting():
+    global reclist
+    global reclist
+    reclist.append(rec)
+    root.destroy()
+    global master
+    global butt1;
+    global butt2;
+    global butt3
+    global name1;
+    global name2
+    global buttc1;
+    global buttc2
+    global master
+    global canvas;
+    global recta
+    global comp;
+    global compc;
+    global comph;
+    global disp;
+    global dispc;
+    global disph;
+    global sea;
+    global seac;
+    global seah;
+    global seb;
+    global sebc;
+    global sebh;
+
+    master = Tk()
+    master.geometry("780x710")
+    master.minsize(550,720)
+    master.attributes('-fullscreen',True)
+    master.title("ELECTICIDER")
+
+    imgc = Image.open("imgback.png")
+    imgc1 = imgc.resize((2318, 80), Image.ANTIALIAS)
+    imgc2 = imgc.resize((2318, 65), Image.ANTIALIAS)
+    imgback1 = ImageTk.PhotoImage(imgc1)
+    imgback2 = ImageTk.PhotoImage(imgc2)
+
+    imgc = Image.open("disp.png")
+    imgc = imgc.resize((218, 50), Image.ANTIALIAS)
+    disp = ImageTk.PhotoImage(imgc)
+
+    img3 = Image.open("dispc.png")
+    img3 = img3.resize((218, 55), Image.ANTIALIAS)
+    dispc = ImageTk.PhotoImage(img3)
+
+    imgc = Image.open("disph.png")
+    imgc = imgc.resize((218, 55), Image.ANTIALIAS)
+    disph = ImageTk.PhotoImage(imgc)
+
+    imgc = Image.open("comp.png")
+    imgc = imgc.resize((100, 28), Image.ANTIALIAS)
+    comp = ImageTk.PhotoImage(imgc)
+
+    img3 = Image.open("compc.png")
+    img3 = img3.resize((100, 28), Image.ANTIALIAS)
+    compc = ImageTk.PhotoImage(img3)
+
+    imgc = Image.open("comph.png")
+    imgc = imgc.resize((100, 28), Image.ANTIALIAS)
+    comph = ImageTk.PhotoImage(imgc)
+
+    img3 = Image.open("sea.png")
+    img3 = img3.resize((188, 48), Image.ANTIALIAS)
+    sea = ImageTk.PhotoImage(img3)
+
+    imgc = Image.open("seac.png")
+    imgc = imgc.resize((188, 48), Image.ANTIALIAS)
+    seac = ImageTk.PhotoImage(imgc)
+
+    img3 = Image.open("seah.png")
+    img3 = img3.resize((188, 48), Image.ANTIALIAS)
+    seah = ImageTk.PhotoImage(img3)
+
+    imgc = Image.open("seb.png")
+    imgc = imgc.resize((188, 51), Image.ANTIALIAS)
+    seb = ImageTk.PhotoImage(imgc)
+
+    img3 = Image.open("sebc.png")
+    img3 = img3.resize((188, 49), Image.ANTIALIAS)
+    sebc = ImageTk.PhotoImage(img3)
+
+    imgc = Image.open("sebh.png")
+    imgc = imgc.resize((188, 51), Image.ANTIALIAS)
+    sebh = ImageTk.PhotoImage(imgc)
+
+    frame1 = Frame(master, bg="white")
+    frame1.place(relheight=1, relwidth=1, relx=0, rely=0)
+
+    frame2 = Frame(frame1, bg="white")
+    frame2.place(relheight=0.9, relwidth=1, relx=0, rely=0.1)
+
+    header = Frame(frame1, bg="white")
+    header.place(relx=0, rely=0, relheight=0.1, relwidth=1)
+
+    men1 = Menu(frame2)
+    master.config(menu=men1)
+    Sub1 = Menu(men1)
+    men1.add_cascade(label='Help', menu=Sub1, )
+    Sub1.add_command(label='Help', )
+    Sub1.add_command(label='Exit', command=master.quit())
+
+    imgn = Image.open("backtemp.png")
+    imgn = imgn.resize((1600, 900), Image.ANTIALIAS)
+    temp = ImageTk.PhotoImage(imgn)
+
+    label1 = Label(frame2, image=temp)
+    label1.place(relx=0, rely=0, relheight=1, relwidth=1)
+
+    labell1 = Label(frame2, bg="white", image=imgback1)
+    labell1.place(relx=0, rely=0.578, relheight=0.125, relwidth=1)
+
+    labell2 = Label(frame2, bg="white", image=imgback2)
+    labell2.place(relx=0, rely=0.722, relheight=0.102, relwidth=1)
+
+    butt1 = Button(frame2, text='Emma Watson \n SE-10B', activebackground="white", bg="white", relief="flat",
+                   borderwidth=0, image=seb, command=func1)
+    butt1.place(relx=0.12, rely=0.6, relheight=0.074, relwidth=0.29)
+    buttc1 = Button(frame2, activebackground="white", bg="white", relief="flat", borderwidth=0, image=comp,
+                    command=window1)
+    buttc1.place(relx=0.005, rely=0.618, relheight=0.0418, relwidth=0.13)
+    name1 = Label(frame2, text="Emma Watson", fg="#1745AD", bg="white", font="Montserrat 9 bold")
+    name1.place(relx=0.208, rely=0.62, relheight=0.015, relwidth=0.118)
+    butt1.bind('<Button>', clickb)
+    butt1.bind('<ButtonRelease>', releaseb)
+    butt1.bind('<Enter>', hoveronb4)
+    butt1.bind('<Leave>', hoveroffb4)
+
+    butt2 = Button(frame2, bg="white", activebackground="white", relief="flat", borderwidth=0, image=sea, command=func2)
+    butt2.place(relx=0.59, rely=0.6, relheight=0.074, relwidth=0.29)
+    buttc2 = Button(frame2, activebackground="white", bg="white", relief="flat", borderwidth=0, image=comp,
+                    command=window2)
+    buttc2.place(relx=0.8625, rely=0.618, relheight=0.0418, relwidth=0.13)
+    name2 = Label(frame2, text="Nathan Kress", fg="#1745AD", bg="white", font="Montserrat 9 bold")
+    name2.place(relx=0.683, rely=0.62, relheight=0.015, relwidth=0.108)
+    butt2.bind('<Button>', clicka)
+    butt2.bind('<ButtonRelease>', releasea)
+    butt2.bind('<Enter>', hoverona4)
+    butt2.bind('<Leave>', hoveroffa4)
+
+    statusbar = Label(master, text='Please caste your vote wisely', bd=0, relief="flat", bg="#002577", fg="white",
+                      font="Helvetica 10 bold")
+    statusbar.place(relx=0, rely=0.96, relheight=0.04, relwidth=1)
+
+    imgn = Image.open("header.png")
+    imgn = imgn.resize((2600, 75), Image.ANTIALIAS)
+    logo = ImageTk.PhotoImage(imgn)
+
+    label4 = Label(header, image=logo, bg="black")
+    label4.place(relx=0, rely=0, relheight=1, relwidth=1)
+
+    butt3 = Button(frame2, text='DISPLAY RESULT', bg="white", relief="flat", activebackground="white", borderwidth=0,
+                   image=disp, command=current)
+    butt3.place(relx=0.295, rely=0.73, relheight=0.09, relwidth=0.4)
+    butt3.bind('<Button>', clickd)
+    butt3.bind('<ButtonRelease>', released)
+    butt3.bind('<Enter>', hoverond4)
+    butt3.bind('<Leave>', hoveroffd4)
+
+    buttc1.bind('<Button>', clickc1)
+    buttc1.bind('<ButtonRelease>', releasec1)
+    buttc1.bind('<Enter>', hoveronc1)
+    buttc1.bind('<Leave>', hoveroffc1)
+
+    buttc2.bind('<Button>', clickc2)
+    buttc2.bind('<ButtonRelease>', releasec2)
+    buttc2.bind('<Enter>', hoveronc2)
+    buttc2.bind('<Leave>', hoveroffc2)
+
+    canvas = Canvas(frame2, bg="#002577", bd=-2)
+    canvas.place(relx=0, rely=0.2, relheight=0.365, relwidth=1)
+
+    recta = canvas.create_rectangle(0, 1000, 1500, 0, fill="white")
+
+    img3 = Image.open("emma1.png")
+    img3 = img3.resize((190, 205), Image.ANTIALIAS)
+    photo2 = ImageTk.PhotoImage(img3)
+
+    label2 = Label(frame2, image=photo2, bg="#002577")
+    label2.place(relx=0.142, rely=0.22, relwidth=0.25, relheight=0.333)
+
+    img3 = Image.open("nathan1.png")
+    img3 = img3.resize((190, 205), Image.ANTIALIAS)
+    photo3 = ImageTk.PhotoImage(img3)
+
+    label3 = Label(frame2, image=photo3, bg="#002577")
+    label3.place(relx=0.61, rely=0.22, relwidth=0.25, relheight=0.333)
+
+    line2()
+
+    master.mainloop()
+
+
+
+
+
+
+
+def mains():
+
+            if b>0 or k>0:
+                print('Done')
+            global root
+            root=Tk()
+
+            global  canb
+            global recta
+            global posa
+            global lab1
+            global lab2
+            global lab3
+            global cana
+            global canc
+            global img5, img1, img2, img3, img4, img6, imgb, imgc, imgm, imgn, imgr
+            global mail;global rec;global cms;global can1,can2,can3
+            global maili, textf, imagef, logoN, cmsc, cmse, cmsf, mailf, maile, rectf, recte, lab, rect1, rect2, rect3
+            global pic, backg, mailc, receiptc,entry1,entry2,entry3,cmsi,receipti,receiptf,button1,enterc,enterh,enteri
+
+            mail=StringVar()
+            cms=IntVar()
+            rec=IntVar()
+            wmail = StringVar(root,value="Enter your email here")
+            wcms = IntVar(root,value="Enter your cms ID here")
+            wrec = IntVar(root,value="Enter your Receipt number here")
+
+            root.geometry("550x720")
+            root.minsize(550, 720)
+            root.attributes("-fullscreen", True)
+            root.title("Yahan Title set krlo XD")  # SET TITLE HERE
+
+            frame = Frame(root)
+            frame.place(relx=0, rely=0, relheight=1, relwidth=1)
+
+            img1 = Image.open("nust.png")
+            img1 = img1.resize((230, 210), Image.ANTIALIAS)
+            pic = ImageTk.PhotoImage(img1)
+
+            imgb = Image.open("background.png")
+            imgb = imgb.resize((670, 320), Image.ANTIALIAS)
+            backg = ImageTk.PhotoImage(imgb)
+
+            imgn = Image.open("Nustlogo.png")
+            imgn = imgn.resize((65, 65), Image.ANTIALIAS)
+            nustlogo = ImageTk.PhotoImage(imgn)
+
+            img2 = Image.open("mail.png")
+            img2 = img2.resize((415, 70), Image.ANTIALIAS)
+            maili = ImageTk.PhotoImage(img2)
+
+            imgm = Image.open("mailc.png")
+            imgm = imgm.resize((415, 55), Image.ANTIALIAS)
+            mailc = ImageTk.PhotoImage(imgm)
+
+            imgc = Image.open("cmsc.png")
+            imgc = imgc.resize((418, 67), Image.ANTIALIAS)
+            cmsc = ImageTk.PhotoImage(imgc)
+
+            imgr = Image.open("receiptc.png")
+            imgr = imgr.resize((419, 70), Image.ANTIALIAS)
+            receiptc = ImageTk.PhotoImage(imgr)
+
+            img3 = Image.open("cms.png")
+            img3 = img3.resize((418, 65), Image.ANTIALIAS)
+            cmsi = ImageTk.PhotoImage(img3)
+
+            img4 = Image.open("receipt.png")
+            img4 = img4.resize((419, 72), Image.ANTIALIAS)
+            receipti = ImageTk.PhotoImage(img4)
+
+            img5 = Image.open("enter.png")
+            img5 = img5.resize((210, 49), Image.ANTIALIAS)
+            enteri = ImageTk.PhotoImage(img5)
+
+            img6 = Image.open("enterc.png")
+            img6 = img6.resize((210, 51), Image.ANTIALIAS)
+            enterc = ImageTk.PhotoImage(img6)
+
+            img7 = Image.open("enterh.png")
+            img7 = img7.resize((210, 53), Image.ANTIALIAS)
+            enterh = ImageTk.PhotoImage(img7)
+
+            Nust = Frame(frame, bg="white")
+            Nust.place(relx=0, rely=0, relwidth=1, relheight=0.1)
+
+            logoN = Label(Nust, image=nustlogo, bg="white")
+            logoN.place(relx=0.005, rely=0, relheight=1)
+
+            imagef = Frame(frame, bg='white')
+            imagef.place(relx=0, rely=0.1, relwidth=1, relheight=0.4)
+            textf = Frame(frame, bg="white")
+            textf.place(relx=0, rely=0.45, relwidth=1, relheight=1)
+
+            entries = Frame(textf, bg="white")
+            entries.place(relx=0, rely=0.1, relwidth=1, relheight=1)
+            entries1 = Frame(entries, bg="white")
+            entries1.place(relx=0, rely=0, relwidth=1, relheight=0.3)
+
+            mailf = Frame(entries1, bg="white")
+            mailf.place(relx=0.001, rely=0, relwidth=1, relheight=0.33)
+            maile = Frame(entries1, bg="white")
+            maile.place(relx=0.5, rely=0.11, width=180, relheight=0.14)
+
+            cmsf = Frame(entries1, bg="white")
+            cmsf.place(relx=0, rely=0.285, relwidth=1, relheight=0.33)
+            cmse = Frame(entries1, bg="white")
+            cmse.place(relx=0.5, rely=0.3755, width=180, relheight=0.14)
+
+            recf = Frame(entries1, bg="white")
+            recf.place(relx=0.001, rely=0.55, relwidth=1, relheight=0.34)
+            rece = Frame(entries1, bg="white")
+            rece.place(relx=0.5, rely=0.6485, width=180, relheight=0.14)
+
+            lab = Label(imagef, image=pic, bg="white")
+            lab.place(relx=0.25, rely=0, relheight=1, relwidth=0.5)
+
+            lab1 = Label(mailf, anchor=N, image=maili, bg="white")
+            entry1 = Entry(maile, textvariable=wmail, relief="flat", bg="white", fg="#002577", font="Garamond 11")
+            entry1.pack(fill="both", expand="true")
+            lab1.place(relx=0, y=0, height=400, relwidth=1)
+
+            can1 = Canvas(entries1, width=10, height=50, bg="white", bd=-2, relief="flat")
+            can1.place(relx=0, rely=0.06)
+            rect1 = can1.create_rectangle(-20, 0, -5, 50, fill="#002577")
+
+            can2 = Canvas(entries1, width=10, height=50, bg="white", bd=-2, relief="flat")
+            can2.place(relx=0, rely=0.34)
+            rect2 = can2.create_rectangle(-20, 0, -5, 50, fill="#002577")
+
+            can3 = Canvas(entries1, width=10, height=50, bg="white", bd=-2, relief="flat")
+            can3.place(relx=0, rely=0.62)
+            rect3 = can3.create_rectangle(-20, 0, -5, 50, fill="#002577")
+            entry1.bind('<Button>', click1)
+            entry1.bind('<Enter>', hoveron1)
+            entry1.bind('<Leave>', hoveroff1)
+
+            lab2 = Label(cmsf, text='CMS ID', anchor=N, image=cmsi, bg="white")
+            entry2 = Entry(cmse, textvariable=wcms, relief="flat", bg="white", fg="#002577", font="Garamond 11")
+            entry2.pack(fill="both", expand="true")
+            lab2.place(relx=0, y=0, height=400, relwidth=1)
+            entry2.bind('<Button>', click2)
+            entry2.bind('<Enter>', hoveron2)
+            entry2.bind('<Leave>', hoveroff2)
+
+            lab3 = Label(recf, text='Reciept No', anchor=N, image=receipti, bg="white")
+            entry3 = Entry(rece, textvariable=wrec, relief="flat", bg="white", fg="#002577", font="Garamond 11")
+            entry3.pack(fill="both", expand="true")
+            lab3.place(relx=0, y=0, height=400, relwidth=1)
+            entry3.bind('<Button>', click3)
+            entry3.bind('<Enter>', hoveron3)
+            entry3.bind('<Leave>', hoveroff3)
+
+            button1 = Button(entries, bg='white', relief="flat", borderwidth=0, image=enteri, activebackground="white",command=fun)
+            button1.place(relx=0.3, rely=0.27, relwidth=0.4, relheight=0.08)
+
+            button1.bind('<ButtonRelease>', release)
+            button1.bind('<Enter>', hoveron4)
+            button1.bind('<Leave>', hoveroff4)
+
+            statusbar = Label(root, text='Please caste your vote wisely', bd=0, relief="flat", bg="#002577", fg="white",
+                              font="Helvetica 10 bold")
+            statusbar.place(relx=0, rely=0.96, relheight=0.04, relwidth=1)
+
+            canb = Canvas(frame, width=1550, height=15, bg="white", bd=-2, relief="flat")
+            canb.place(x=80, y=28)
+            recta = canb.create_rectangle(3000, 5, 1100, 10, fill="#002577")
+            line()
+            root.mainloop()
+
+mains()
