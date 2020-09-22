@@ -1,4 +1,4 @@
-# ELECTICIDER
+### ELECTICIDER
 ELECTICIDER is a desktop application created with tkinter, a commonly used GUI framework for python.
 Its name is the amalgamation of two words ‘ELECTION’ and ‘DECIDER’ . Although it is not a web application but it does need constant internet access.
 It has been originally designed to conduct on-campus elections where the candidates are students. Its development was aimed at encouraging the students
